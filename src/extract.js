@@ -64,7 +64,7 @@ function preprocessScript(data, type) {
     }
 
     if (vueFile.template) {
-      const vueTemplate = compileTemplate({source: vueFile.template.content});
+      const vueTemplate = compileTemplate({source: vueFile.template.content, preprocessLang: vueFile.template.lang});
 
       contents.push({
         content: vueTemplate.code,
