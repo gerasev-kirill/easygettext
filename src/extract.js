@@ -49,7 +49,7 @@ exports.TranslationReference = class TranslationReference {
   }
 };
 
-function preprocessScript(data, type) {
+function preprocessScript(data, type, filename) {
   const contents = [];
 
   if (type === 'vue') {
@@ -64,7 +64,11 @@ function preprocessScript(data, type) {
     }
 
     if (vueFile.template) {
-      const vueTemplate = compileTemplate({source: vueFile.template.content, preprocessLang: vueFile.template.lang});
+      const vueTemplate = compileTemplate({
+        source: vueFile.template.content,
+        filename: filename,
+        preprocessLang: vueFile.template.lang
+      });
 
       contents.push({
         content: vueTemplate.code,
@@ -272,7 +276,7 @@ exports.Extractor = class Extractor {
       this.parse(filename, templateData);
     }
 
-    preprocessScript(content, ext).forEach(
+    preprocessScript(content, ext, filename).forEach(
       ({content: fileContent, lang}) => {
         if (lang === 'js') {
           this.parseJavascript(filename, fileContent, jsParser);
