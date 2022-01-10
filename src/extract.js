@@ -348,6 +348,7 @@ exports.Extractor = class Extractor {
     };
 
     for (let msgid in this.items) {
+      if (!msgid) continue
       if (this.items.hasOwnProperty(msgid)) {
         const contexts = Object.keys(this.items[msgid]).sort();
         for (const ctx of contexts) {
