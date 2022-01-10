@@ -1,5 +1,5 @@
 const {walk} = require('estree-walker');
-const {parseTSScript} = require('buntis');
+const { parse: parseTSScript } = require('@typescript-eslint/typescript-estree');
 const extractUtils = require('./extract-utils.js');
 
 const {DEFAULT_VUE_GETTEXT_FUNCTIONS} = require('./constants.js');

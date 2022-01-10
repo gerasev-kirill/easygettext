@@ -65,6 +65,7 @@ function preprocessScript(data, type, filename) {
 
     if (vueFile.template) {
       const vueTemplate = compileTemplate({
+        id: '0',
         source: vueFile.template.content,
         filename: filename,
         preprocessLang: vueFile.template.lang
